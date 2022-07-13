@@ -1,4 +1,4 @@
-<mat-card *ngIf="weather" (click)="showTable()">
+<mat-card *ngIf="weather" (click)="toggleForecastVisibility()">
   <mat-card-header>
     <mat-card-title
       >{{ weather.name }},
@@ -19,14 +19,14 @@
   </mat-card-header>
 
   <mat-card-content>
-    <table *ngIf="table">
+    <table *ngIf="isForecastVisible">
       <tr>
-        <th *ngFor="let item of forecast.list | slice: 0:8; index as i">
+        <th *ngFor="let item of forecast.list; index as i">
           {{ forecast.list[i].main.temp | number: "1.0-0" }} &#8451;
         </th>
       </tr>
       <tr>
-        <td *ngFor="let item of forecast.list | slice: 0:8; index as i">
+        <td *ngFor="let item of forecast.list; index as i">
           <img
             mat-card-image
             src="https://openweathermap.org/img/wn/{{

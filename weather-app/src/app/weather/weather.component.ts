@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { WeatherService } from '../weather.service';
-import { WeatherForecast } from '../weatherForecast';
-import { Weather } from './../weather';
+import { WeatherService } from '../services/weather.service';
+import { WeatherForecast } from '../interfaces/weather-forecast.interface';
+import { Weather } from '../interfaces/weather.interface';
 
 @Component({
   selector: 'app-weather',
@@ -12,28 +12,28 @@ export class WeatherComponent implements OnInit {
   @Input() city!: string;
   weather!: Weather;
   forecast!: WeatherForecast;
-  table: Boolean = false;
+  isForecastVisible: boolean = false;
 
   constructor(private weatherService: WeatherService) {}
 
   ngOnInit(): void {
-    this.search(this.city);
-    this.searchForecast(this.city);
+    this.getCurrentWeatherByCity(this.city);
+    this.getWeatherForecastByCity(this.city);
   }
 
-  search(city: string) {
+  getCurrentWeatherByCity(city: string) {
     this.weatherService
-      .getWeather(city)
+      .getCurrentWeatherByCity(city)
       .subscribe((weather) => (this.weather = weather));
   }
 
-  searchForecast(city: string) {
+  getWeatherForecastByCity(city: string) {
     this.weatherService
-      .getForecast(city)
+      .getWeatherForecastByCity(city)
       .subscribe((forecast) => (this.forecast = forecast));
   }
 
-  showTable() {
-    this.table = !this.table;
+  toggleForecastVisibility() {
+    this.isForecastVisible = !this.isForecastVisible;
   }
 }
