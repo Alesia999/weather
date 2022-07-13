@@ -1,0 +1,51 @@
+.weather-card {
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+  background-color: rgba(243, 212, 240, 0.982);
+  padding: 10px 0 40px 37px;
+
+  &__header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 0 20px;
+    cursor: pointer;
+
+    &-title {
+      margin-left: 0;
+      h2 {
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 66px;
+      }
+
+      h3 {
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 24px;
+        font-weight: bold;
+      }
+    }
+
+    &-info {
+      margin-right: 30px;
+      padding-right: 7px;
+      text-align: right;
+      img {
+        width: 50%;
+      }
+
+      h4 {
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 20px;
+        line-height: 10px;
+      }
+    }
+  }
+
+  &__content {
+    display: flex;
+    padding: 0 0 25px;
+  }
+
+}

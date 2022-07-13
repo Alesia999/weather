@@ -1,0 +1,21 @@
+<table>
+  <tr>
+    <th>
+      {{ forecast.dt_txt | date: " h a" }}
+    </th>
+  </tr>
+  <tr>
+    <td>
+      <img
+        mat-card-image
+        src="https://openweathermap.org/img/wn/{{
+          forecast.weather[0].icon
+        }}@2x.png"
+        [alt]="forecast.weather[0].main"
+      />
+    </td>
+  </tr>
+  <tr>
+    <td>{{ forecast.main.temp | number: "1.0-0" }}&#8451;</td>
+  </tr>
+</table>
