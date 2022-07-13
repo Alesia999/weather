@@ -13,21 +13,3 @@ mat-card {
   width: 800px;
   cursor: pointer;
 }
-table {
-  font-size: 14px;
-  td,
-  th {
-    max-width: 100%;
-    text-align: center;
-  }
-  th {
-    font-weight: 400;
-  }
-  td {
-    img {
-      width: 60%;
-      display: block;
-      margin: auto;
-    }
-  }
-}

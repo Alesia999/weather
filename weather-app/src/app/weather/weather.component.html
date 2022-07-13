@@ -18,29 +18,7 @@
     </div>
   </mat-card-header>
 
-  <mat-card-content>
-    <table *ngIf="isForecastVisible">
-      <tr>
-        <th *ngFor="let item of forecast.list; index as i">
-          {{ forecast.list[i].main.temp | number: "1.0-0" }} &#8451;
-        </th>
-      </tr>
-      <tr>
-        <td *ngFor="let item of forecast.list; index as i">
-          <img
-            mat-card-image
-            src="https://openweathermap.org/img/wn/{{
-              forecast.list[i].weather[0].icon
-            }}@2x.png"
-            [alt]="forecast.list[i].weather[0].main"
-          />
-        </td>
-      </tr>
-      <tr>
-        <td *ngFor="let item of forecast.list | slice: 0:8; index as i">
-          {{ forecast.list[i].dt_txt | date: " h a" }}
-        </td>
-      </tr>
-    </table>
+  <mat-card-content *ngIf="isForecastVisible">
+    <app-forecast [forecastList]="forecast.list"></app-forecast>
   </mat-card-content>
 </mat-card>

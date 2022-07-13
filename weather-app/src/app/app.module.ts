@@ -4,9 +4,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { WeatherComponent } from './weather/weather.component';
 import { MatCardModule } from '@angular/material/card';
+import { ForecastComponent } from './forecast/forecast.component';
 
 @NgModule({
-  declarations: [AppComponent, WeatherComponent],
+  declarations: [AppComponent, WeatherComponent, ForecastComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
