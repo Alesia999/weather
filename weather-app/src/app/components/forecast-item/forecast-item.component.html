@@ -1,7 +1,7 @@
 <table>
   <tr>
     <th>
-      {{ forecast.dt_txt | date: " h a" }}
+      {{ forecastInfo.forecastDate | date: " h a" }}
     </th>
   </tr>
   <tr>
@@ -9,13 +9,13 @@
       <img
         mat-card-image
         src="https://openweathermap.org/img/wn/{{
-          forecast.weather[0].icon
+          forecastInfo.forecastImage
         }}@2x.png"
-        [alt]="forecast.weather[0].main"
+        [alt]="forecastInfo.forecastDescription"
       />
     </td>
   </tr>
   <tr>
-    <td>{{ forecast.main.temp | number: "1.0-0" }}&#8451;</td>
+    <td>{{ forecastInfo.temperature | number: "1.0-0" }}&#8451;</td>
   </tr>
 </table>

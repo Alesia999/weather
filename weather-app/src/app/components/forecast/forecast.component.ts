@@ -1,17 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { ForecastInfo } from 'src/app/interfaces/weather-forecast.interface';
 
 @Component({
   selector: 'app-forecast',
   templateUrl: './forecast.component.html',
-  styleUrls: ['./forecast.component.scss']
+  styleUrls: ['./forecast.component.scss'],
 })
-export class ForecastComponent implements OnInit {
-
-  @Input() forecastList: any
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+export class ForecastComponent {
+  @Input() forecastList!: ForecastInfo[];
 }

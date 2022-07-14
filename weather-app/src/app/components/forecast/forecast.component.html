@@ -1,5 +1,5 @@
 <div class="forecast-container">
   <div *ngFor="let item of forecastList; index as i" class="forecast-item">
-<app-forecast-item [forecast]="forecastList[i]"></app-forecast-item>
+    <app-forecast-item [forecastInfo]="item"></app-forecast-item>
   </div>
 </div>
