@@ -1,21 +1,23 @@
-<table>
-  <tr>
-    <th>
-      {{ forecastInfo.forecastDate | date: " h a" }}
-    </th>
-  </tr>
-  <tr>
-    <td>
-      <img
-        mat-card-image
-        src="https://openweathermap.org/img/wn/{{
-          forecastInfo.forecastImage
-        }}@2x.png"
-        [alt]="forecastInfo.forecastDescription"
-      />
-    </td>
-  </tr>
-  <tr>
-    <td>{{ forecastInfo.temperature | number: "1.0-0" }}&#8451;</td>
-  </tr>
-</table>
+<div class="forecast-item">
+  <table>
+    <tr>
+      <th>
+        {{ forecastInfo.forecastDate | date: " h a" }}
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <img
+          mat-card-image
+          src="https://openweathermap.org/img/wn/{{
+            forecastInfo.forecastImage
+          }}@2x.png"
+          [alt]="forecastInfo.forecastDescription"
+        />
+      </td>
+    </tr>
+    <tr>
+      <td>{{ forecastInfo.temperature | number: "1.0-0" }}&#8451;</td>
+    </tr>
+  </table>
+</div>
