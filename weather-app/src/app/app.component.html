@@ -1,9 +1,7 @@
 <div class="container">
-  <div class="cities-wrapper">
-    <div *ngFor="let city of cities" class="cities-list">
-      <div *ngIf="weather" class="city-item">
-        <app-weather [city]="city" [weather]="weather"></app-weather>
-      </div>
+  <div class="main-content">
+    <div *ngFor="let city of cities" class="cities-wrapper">
+      <app-cities-list [city]="city"></app-cities-list>
     </div>
   </div>
 </div>
