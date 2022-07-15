@@ -1,0 +1,57 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(243, 212, 240, 0.982);
+}
+
+.weather-card {
+  width: 37.5rem;
+  padding: 0.6rem 0 2.5rem 2rem;
+
+  &__header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 0 1.25rem;
+    cursor: pointer;
+
+    &-title {
+      margin-left: 0;
+
+      h2 {
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 4.1rem;
+      }
+
+      h3 {
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+    }
+
+    &-info {
+      margin-right: 1.9rem;
+      padding-right: 0.5rem;
+      text-align: right;
+
+      img {
+        transform: translate(0.75rem, 0);
+        width: 50%;
+      }
+
+      h4 {
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 1.2rem;
+        line-height: 0.6rem;
+      }
+    }
+  }
+
+  &__content {
+    display: flex;
+    padding: 0 0 1.6rem;
+  }
+
+}

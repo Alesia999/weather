@@ -1,18 +1,23 @@
 table {
-  font-size: 14px;
+
   td,
   th {
     max-width: 100%;
-    text-align: center;
+    text-align: left;
   }
+
   th {
+    opacity: 80%;
+    font-size: 0.9rem;
     font-weight: 400;
   }
+
   td {
+    font-size: 1.1rem;
+
     img {
-      width: 60%;
+      width: 50%;
       display: block;
-      margin: auto;
     }
   }
 }

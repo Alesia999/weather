@@ -1,9 +1,11 @@
-.container {
+:host {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
   align-items: center;
+  background: radial-gradient(circle, rgba(240, 60, 139, 1) 0%, rgba(63, 143, 237, 1) 100%);
 }
-.cities-list{
-  margin-top: 50px;
+
+.main-content {
+  margin: 4rem auto;
 }
