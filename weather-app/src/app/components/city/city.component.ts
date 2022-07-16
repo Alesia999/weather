@@ -1,13 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { WeatherService } from 'src/app/services/weather.service';
-import { Weather } from './../../interfaces/weather.interface';
+import { Weather } from '../../interfaces/weather.interface';
 
 @Component({
-  selector: 'app-cities-list',
-  templateUrl: './cities-list.component.html',
-  styleUrls: ['./cities-list.component.scss']
+  selector: 'app-city',
+  templateUrl: './city.component.html',
+  styleUrls: ['./city.component.scss']
 })
-export class CitiesListComponent implements OnInit {
+export class CityComponent implements OnInit {
 
   @Input() city!: string;
   weather!: Weather;

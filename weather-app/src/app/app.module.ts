@@ -5,14 +5,17 @@ import { AppComponent } from './app.component';
 import { WeatherComponent } from './components/weather/weather.component';
 import { ForecastComponent } from './components/forecast/forecast.component';
 import { ForecastItemComponent } from './components/forecast-item/forecast-item.component';
-import { CitiesListComponent } from './components/cities-list/cities-list.component';
+import { CityComponent } from './components/city/city.component';
 
 @NgModule({
-  declarations: [AppComponent, WeatherComponent, ForecastComponent, ForecastItemComponent, CitiesListComponent],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
+  declarations: [
+    AppComponent,
+    WeatherComponent,
+    ForecastComponent,
+    ForecastItemComponent,
+    CityComponent,
   ],
+  imports: [BrowserModule, HttpClientModule],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
