@@ -14,7 +14,7 @@ export class WeatherComponent implements OnInit {
   forecast!: WeatherForecast;
   isForecastVisible: boolean = false;
 
-  constructor(private weatherService: WeatherService) {}
+  constructor(private readonly weatherService: WeatherService) {}
 
   ngOnInit(): void {
     this.getWeatherForecastByCity(this.city);

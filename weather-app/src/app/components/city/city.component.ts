@@ -12,7 +12,7 @@ export class CityComponent implements OnInit {
   @Input() city!: string;
   weather!: Weather;
 
-  constructor(private weatherService: WeatherService) {}
+  constructor(private readonly weatherService: WeatherService) {}
 
   ngOnInit(): void {
   this.getCurrentWeatherByCity(this.city);

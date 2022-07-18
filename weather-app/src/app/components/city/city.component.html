@@ -1,5 +1,1 @@
-<div class="cities-list">
-  <div *ngIf="weather" class="city-item">
-    <app-weather [weather]="weather" [city]="city"></app-weather>
-  </div>
-</div>
+<app-weather *ngIf="weather" [weather]="weather" [city]="city"></app-weather>

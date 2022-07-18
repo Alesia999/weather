@@ -1,7 +1,5 @@
 <div class="container">
   <div class="main-content">
-    <div *ngFor="let city of cities" class="cities-wrapper">
-      <app-city [city]="city"></app-city>
-    </div>
+    <app-city *ngFor="let city of cities" [city]="city"></app-city>
   </div>
 </div>

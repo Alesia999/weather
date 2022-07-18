@@ -1,7 +1,4 @@
-<div class="forecast">
-  <div class="forecast-list">
-    <div *ngFor="let item of forecastList; index as i" class="forecast-item">
-      <app-forecast-item [forecastInfo]="item"></app-forecast-item>
-    </div>
-  </div>
-</div>
+<app-forecast-item
+  *ngFor="let item of forecastList"
+  [forecastInfo]="item"
+></app-forecast-item>
