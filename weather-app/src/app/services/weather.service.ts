@@ -10,6 +10,8 @@ import { OpenWeatherAPI } from './openweather-api';
   providedIn: 'root',
 })
 export class WeatherService {
+  CNT = 8;
+
   constructor(private http: HttpClient) {}
 
   getCurrentWeatherByCity(city: string): Observable<Weather> {
@@ -38,7 +40,7 @@ export class WeatherService {
       .set('units', 'metric')
       .set('q', city)
       .set('appid', environment.apiKey)
-      .set('cnt', 8);
+      .set('cnt', this.CNT);
 
     return this.http
       .get<OpenWeatherAPI.WeatherForecastFromServer>(
