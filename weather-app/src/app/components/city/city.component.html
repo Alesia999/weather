@@ -1,1 +1,8 @@
-<app-weather *ngIf="weather" [weather]="weather" [city]="city"></app-weather>
+<app-weather
+  *ngIf="weather"
+  [weather]="weather"
+  (click)="toggleForecastVisibility()"
+></app-weather>
+<div class="forecast" *ngIf="isForecastVisible">
+  <app-forecast [forecastList]="forecast"></app-forecast>
+</div>

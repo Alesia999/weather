@@ -1,21 +1,14 @@
 <div class="weather-card">
-  <div class="weather-card__header" (click)="toggleForecastVisibility()">
-    <div class="weather-card__header-title">
-      <h3>{{ weather.cityName }}, {{ weather.countryCode }}</h3>
-      <h2>{{ weather.temperature | number: "1.0-0" }}&#176;</h2>
-    </div>
-    <div class="weather-card__header-info">
-      <img
-        src="https://openweathermap.org/img/wn/{{
-          weather.weatherImage
-        }}@2x.png"
-        [alt]="weather.weatherDescription"
-      />
-      <h4>{{ weather.weatherDescription }}</h4>
-      <h4>Wind: {{ weather.windSpeed }} m/s</h4>
-    </div>
+  <div class="weather-card__main">
+    <h3>{{ weather.cityName }}, {{ weather.countryCode }}</h3>
+    <h2>{{ weather.temperature | number: "1.0-0" }}&#176;</h2>
   </div>
-  <div class="weather-card__content" *ngIf="isForecastVisible">
-    <app-forecast [forecastList]="forecast"></app-forecast>
+  <div class="weather-card__description">
+    <img
+      src="https://openweathermap.org/img/wn/{{ weather.weatherImage }}@2x.png"
+      [alt]="weather.weatherDescription"
+    />
+    <h4>{{ weather.weatherDescription }}</h4>
+    <h4>Wind: {{ weather.windSpeed }} m/s</h4>
   </div>
 </div>

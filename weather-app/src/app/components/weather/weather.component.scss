@@ -1,58 +1,43 @@
 :host {
   display: flex;
-  flex-direction: column;
-  background-color: rgba(243, 212, 240, 0.982);
 }
 
 .weather-card {
-  padding: 0.6rem 0 2rem 2rem;
-  margin-bottom: 2.7rem;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.6rem 0 0.6rem 2rem;
+  cursor: pointer;
+  width: 100%;
 
-  &__header {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    cursor: pointer;
-
-    &-title {
-
-      h2 {
-        margin: 0;
-        font-size: 4.1rem;
-        font-weight: 500;
-      }
-
-      h3 {
-        margin: 0.5rem 0;
-        font-size: 1.5rem;
-        font-weight: 600;
-      }
+  &__main {
+    h2 {
+      margin: 0;
+      font-size: 4.1rem;
+      font-weight: 500;
     }
 
-    &-info {
-      margin-right: 1.9rem;
-      padding-right: 0.5rem;
-      text-align: right;
-
-      img {
-        transform: translate(0.75rem, 0);
-        width: 50%;
-        margin-bottom: -0.5rem;
-      }
-
-      h4 {
-        margin: 0 0 1rem;
-        font-weight: 400;
-        font-size: 1.1rem;
-        line-height: 0.5rem;
-      }
+    h3 {
+      margin: 0.5rem 0;
+      font-size: 1.5rem;
+      font-weight: 600;
     }
   }
 
-  &__content {
-    display: flex;
-    margin: 1rem 0 0;
-  }
+  &__description {
+    padding-right: 2rem;
+    text-align: right;
 
+    img {
+      transform: translate(0.75rem, 0);
+      width: 50%;
+      margin-bottom: -0.5rem;
+    }
+
+    h4 {
+      margin: 0 0 1rem;
+      font-weight: 400;
+      font-size: 1.1rem;
+      line-height: 0.5rem;
+    }
+  }
 }
