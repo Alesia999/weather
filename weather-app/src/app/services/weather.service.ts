@@ -11,7 +11,7 @@ import { WeatherForecastByCityParams } from './../interfaces/weather-forecast-by
   providedIn: 'root',
 })
 export class WeatherService {
-  constructor(private http: HttpClient) {}
+  constructor(private readonly http: HttpClient) {}
 
   getCurrentWeatherByCity(city: string): Observable<Weather> {
     const params = new HttpParams()
