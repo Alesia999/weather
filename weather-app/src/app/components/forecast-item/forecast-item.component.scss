@@ -14,10 +14,18 @@ table {
 
   td {
     font-size: 1.1rem;
+    font-weight: 500;
 
     img {
       width: 50%;
       display: block;
+    }
+
+    .celsius-symbol{
+      vertical-align: top;
+      font-size:0.9rem;
+      font-weight: 100;
+
     }
   }
 }
