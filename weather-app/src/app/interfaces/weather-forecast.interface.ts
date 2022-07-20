@@ -1,6 +1,6 @@
-export type WeatherForecast = ForecastInfo[];
+export type WeatherForecast = ForecastItem[];
 
-export interface ForecastInfo {
+export interface ForecastItem {
   forecastDate: string;
   temperature: number;
   forecastDescription: string;

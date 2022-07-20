@@ -1,20 +1,23 @@
 <table>
   <tr>
     <th>
-      {{ forecastInfo.forecastDate | date: " h a" }}
+      {{ forecastItem.forecastDate | date: " h a" }}
     </th>
   </tr>
   <tr>
     <td>
       <img
         src="https://openweathermap.org/img/wn/{{
-          forecastInfo.forecastImage
+          forecastItem.forecastImage
         }}@2x.png"
-        [alt]="forecastInfo.forecastDescription"
+        [alt]="forecastItem.forecastDescription"
       />
     </td>
   </tr>
   <tr>
-    <td>{{ forecastInfo.temperature | number: "1.0-0" }}<span class="celsius-symbol">&#8451;</span></td>
+    <td>
+      {{ forecastItem.temperature | number: "1.0-0"
+      }}<span class="celsius-symbol">&#8451;</span>
+    </td>
   </tr>
 </table>

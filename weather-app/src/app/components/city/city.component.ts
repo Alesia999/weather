@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { WeatherService } from 'src/app/services/weather.service';
 import { Weather } from '../../interfaces/weather.interface';
 import { WeatherForecast } from 'src/app/interfaces/weather-forecast.interface';
+import { Observable, shareReplay } from 'rxjs';
 
 @Component({
   selector: 'app-city',
@@ -12,29 +13,25 @@ export class CityComponent implements OnInit {
   private static readonly FORECAST_ITEMS_COUNT = 8;
   @Input() city!: string;
   weather!: Weather;
-  forecast!: WeatherForecast;
+  forecast$!: Observable<WeatherForecast>;
   isForecastVisible: boolean = false;
 
   constructor(private readonly weatherService: WeatherService) {}
 
   ngOnInit(): void {
     this.getCurrentWeatherByCity(this.city);
-    this.getWeatherForecastByCity(this.city);
+    this.forecast$ = this.weatherService
+      .getWeatherForecastByCity({
+        city: this.city,
+        forecastItemsCount: CityComponent.FORECAST_ITEMS_COUNT,
+      })
+      .pipe(shareReplay(1));
   }
 
   getCurrentWeatherByCity(city: string) {
     this.weatherService
       .getCurrentWeatherByCity(city)
       .subscribe((weather) => (this.weather = weather));
-  }
-
-  getWeatherForecastByCity(city: string) {
-    this.weatherService
-      .getWeatherForecastByCity({
-        city,
-        forecastItemsCount: CityComponent.FORECAST_ITEMS_COUNT,
-      })
-      .subscribe((forecast) => (this.forecast = forecast));
   }
 
   toggleForecastVisibility() {
