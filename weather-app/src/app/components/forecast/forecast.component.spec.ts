@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ForecastComponent } from './forecast.component';
 
 describe('ForecastComponent', () => {
@@ -8,9 +7,8 @@ describe('ForecastComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ForecastComponent ]
-    })
-    .compileComponents();
+      declarations: [ForecastComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
