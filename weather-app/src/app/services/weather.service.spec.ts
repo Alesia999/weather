@@ -5,9 +5,12 @@ import {
   HttpTestingController,
 } from '@angular/common/http/testing';
 import { Weather } from './../interfaces/weather.interface';
+import { WeatherForecast } from 'src/app/interfaces/weather-forecast.interface';
 
 const city = 'Torun';
-const apiUrl = `https://api.openweathermap.org/data/2.5/weather?units=metric&q=${city}&appid=6de247093613209788e48c0171abbc79`;
+let forecastItemsCount = 1;
+const apiWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?units=metric&q=${city}&appid=6de247093613209788e48c0171abbc79`;
+const apiForecastUrl = `https://api.openweathermap.org/data/2.5/forecast?units=metric&q=${city}&appid=6de247093613209788e48c0171abbc79&cnt=${forecastItemsCount}`;
 
 const mockWeatherResponse = {
   weather: [{ main: 'Clouds', icon: '03n' }],
@@ -23,6 +26,18 @@ const mockWeatherResponse = {
   name: 'Toruń',
 };
 
+const mockWeatherForecastResponse = {
+  list: [
+    {
+      dt_txt: '2022-07-21 21:00:00',
+      main: {
+        temp: 20,
+      },
+      weather: [{ main: 'Clouds', icon: '03n' }],
+    },
+  ],
+};
+
 describe('WeatherService', () => {
   let service: WeatherService;
   let controller: HttpTestingController;
@@ -34,7 +49,6 @@ describe('WeatherService', () => {
       providers: [WeatherService],
     });
     service = TestBed.inject(WeatherService);
-
     controller = TestBed.inject(HttpTestingController);
   });
 
@@ -44,10 +58,11 @@ describe('WeatherService', () => {
 
   it('should get current weather by city', () => {
     let weather: Weather | undefined;
+
     service.getCurrentWeatherByCity(city).subscribe((res) => {
       weather = res;
     });
-    const request = controller.expectOne(apiUrl);
+    const request = controller.expectOne(apiWeatherUrl);
     request.flush(mockWeatherResponse);
     expect(weather).toEqual({
       weatherDescription: mockWeatherResponse.weather[0].main,
@@ -57,5 +72,27 @@ describe('WeatherService', () => {
       cityName: mockWeatherResponse.name,
       countryCode: mockWeatherResponse.sys.country,
     });
+  });
+
+  it('should get weather forecast by city', () => {
+    let weatherForecast: WeatherForecast | undefined;
+
+    service
+      .getWeatherForecastByCity({ city, forecastItemsCount })
+      .subscribe((res) => {
+        weatherForecast = res;
+      });
+    const request = controller.expectOne(apiForecastUrl);
+    request.flush(mockWeatherForecastResponse);
+    controller.verify();
+    expect(weatherForecast).toEqual([
+      {
+        forecastDate: mockWeatherForecastResponse['list'][0].dt_txt,
+        temperature: mockWeatherForecastResponse.list[0].main.temp,
+        forecastDescription:
+          mockWeatherForecastResponse.list[0].weather[0].main,
+        forecastImage: mockWeatherForecastResponse.list[0].weather[0].icon,
+      },
+    ]);
   });
 });
