@@ -5,13 +5,12 @@ import { Weather } from '../interfaces/weather.interface';
 import { environment } from '../../environments/environment';
 import { WeatherForecast } from '../interfaces/weather-forecast.interface';
 import { OpenWeatherAPI } from './openweather-api';
+import { WeatherForecastByCityParams } from './../interfaces/weather-forecast-by-city-params.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class WeatherService {
-  CNT = 8;
-
   constructor(private http: HttpClient) {}
 
   getCurrentWeatherByCity(city: string): Observable<Weather> {
@@ -35,12 +34,16 @@ export class WeatherService {
         }))
       );
   }
-  getWeatherForecastByCity(city: string): Observable<WeatherForecast> {
+
+  getWeatherForecastByCity({
+    city,
+    forecastItemsCount,
+  }: WeatherForecastByCityParams): Observable<WeatherForecast> {
     const params = new HttpParams()
       .set('units', 'metric')
       .set('q', city)
       .set('appid', environment.apiKey)
-      .set('cnt', this.CNT);
+      .set('cnt', forecastItemsCount);
 
     return this.http
       .get<OpenWeatherAPI.WeatherForecastFromServer>(

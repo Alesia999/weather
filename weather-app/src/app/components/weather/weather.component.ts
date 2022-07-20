@@ -9,6 +9,8 @@ import { Weather } from '../../interfaces/weather.interface';
   styleUrls: ['./weather.component.scss'],
 })
 export class WeatherComponent implements OnInit {
+  private static readonly FORECAST_ITEMS_COUNT = 8;
+
   @Input() city!: string;
   @Input() weather!: Weather;
   forecast!: WeatherForecast;
@@ -22,7 +24,10 @@ export class WeatherComponent implements OnInit {
 
   getWeatherForecastByCity(city: string) {
     this.weatherService
-      .getWeatherForecastByCity(city)
+      .getWeatherForecastByCity({
+        city,
+        forecastItemsCount: WeatherComponent.FORECAST_ITEMS_COUNT,
+      })
       .subscribe((forecast) => (this.forecast = forecast));
   }
 
