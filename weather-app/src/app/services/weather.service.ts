@@ -4,7 +4,7 @@ import { map, Observable } from 'rxjs';
 import { Weather } from '../interfaces/weather.interface';
 import { environment } from '../../environments/environment';
 import { WeatherForecast } from '../interfaces/weather-forecast.interface';
-import { OpenWeatherAPI } from './openweather-api';
+import { OpenWeatherAPI } from './open-weather-api';
 import { WeatherForecastByCityParams } from './../interfaces/weather-forecast-by-city-params.interface';
 
 @Injectable({
@@ -20,7 +20,7 @@ export class WeatherService {
       .set('appid', environment.apiKey);
 
     return this.http
-      .get<OpenWeatherAPI.WeatherFromServer>(environment.apiUrl + 'weather', {
+      .get<OpenWeatherAPI.Weather>(environment.apiUrl + 'weather', {
         params,
       })
       .pipe(
@@ -46,10 +46,9 @@ export class WeatherService {
       .set('cnt', forecastItemsCount);
 
     return this.http
-      .get<OpenWeatherAPI.WeatherForecastFromServer>(
-        environment.apiUrl + 'forecast',
-        { params }
-      )
+      .get<OpenWeatherAPI.WeatherForecast>(environment.apiUrl + 'forecast', {
+        params,
+      })
       .pipe(
         map((res) => {
           return res.list.map((item) => ({

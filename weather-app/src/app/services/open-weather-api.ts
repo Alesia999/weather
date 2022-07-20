@@ -1,6 +1,6 @@
 export namespace OpenWeatherAPI {
-  export interface WeatherFromServer {
-    weather: WeatherInfo[];
+  export interface Weather {
+    weather: WeatherDescription[];
     main: {
       temp: number;
     };
@@ -13,20 +13,20 @@ export namespace OpenWeatherAPI {
     name: string;
   }
 
-  interface WeatherInfo {
+  interface WeatherDescription {
     main: string;
     icon: string;
   }
 
-  export interface WeatherForecastFromServer {
-    list: ForecastInfoFromServer[];
+  export interface WeatherForecast {
+    list: ForecastItem[];
   }
 
-  interface ForecastInfoFromServer {
+  interface ForecastItem {
     dt_txt: string;
     main: {
       temp: number;
     };
-    weather: WeatherInfo[];
+    weather: WeatherDescription[];
   }
 }
