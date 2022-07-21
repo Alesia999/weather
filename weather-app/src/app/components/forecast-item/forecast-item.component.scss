@@ -8,17 +8,16 @@
   font-weight: 400;
 }
 
-.forecast-image {
-  img {
-    width: 50%;
-    display: block;
-    transform: translate(50%);
-  }
+img {
+  width: 50%;
+  display: block;
+  transform: translate(50%);
 }
 
 .forecast-temperature {
   font-size: 1.1rem;
   font-weight: 500;
+
   .celsius-symbol {
     vertical-align: top;
     font-size: 0.9rem;
