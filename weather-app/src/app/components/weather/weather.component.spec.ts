@@ -1,3 +1,4 @@
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Weather } from 'src/app/interfaces/weather.interface';
 import { WeatherComponent } from './weather.component';
@@ -18,6 +19,7 @@ describe('WeatherComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [WeatherComponent],
+      schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
   });
 

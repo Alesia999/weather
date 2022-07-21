@@ -1,5 +1,5 @@
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { WeatherImageComponent } from './weather-image.component';
 
 describe('WeatherImageComponent', () => {
@@ -8,9 +8,9 @@ describe('WeatherImageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ WeatherImageComponent ]
-    })
-    .compileComponents();
+      declarations: [WeatherImageComponent],
+      schemas: [NO_ERRORS_SCHEMA],
+    }).compileComponents();
   });
 
   beforeEach(() => {
