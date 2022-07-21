@@ -30,10 +30,10 @@ describe('ForecastItemComponent', () => {
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(component).toBeDefined();
   });
 
-  it('should display forecast item properties', () => {
+  it('should display forecast time and temperature', () => {
     expect(
       fixture.debugElement.query(By.css('.forecast-time')).nativeElement
         .textContent
@@ -44,10 +44,10 @@ describe('ForecastItemComponent', () => {
     ).toContain(25);
   });
 
-  it('should render app weather image', () => {
+  it('should render weather image', () => {
     const { debugElement } = fixture;
     const image = debugElement.query(By.css('app-weather-image'));
-    expect(image).toBeTruthy();
+    expect(image).toBeDefined();
   });
 
   it('should pass image name', () => {

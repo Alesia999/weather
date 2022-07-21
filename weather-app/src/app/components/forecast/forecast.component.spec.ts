@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { ForecastComponent } from './forecast.component';
 
 describe('ForecastComponent', () => {
@@ -18,6 +19,12 @@ describe('ForecastComponent', () => {
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(component).toBeDefined();
+  });
+
+  it('should render forecast item', () => {
+    const { debugElement } = fixture;
+    const forecastItem = debugElement.query(By.css('app-forecast-item'));
+    expect(forecastItem).toBeDefined();
   });
 });
