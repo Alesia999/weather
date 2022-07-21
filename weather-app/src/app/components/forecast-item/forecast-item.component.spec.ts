@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ForecastItem } from 'src/app/interfaces/weather-forecast.interface';
 import { ForecastItemComponent } from './forecast-item.component';
+import { ForecastItem } from 'src/app/interfaces/forecast-item.interface';
 
 let mockForecastItem: ForecastItem = {
   forecastDate: '2022-07-21 21:00:00',

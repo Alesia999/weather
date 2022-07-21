@@ -10,4 +10,10 @@
   overflow: hidden;
   border-radius: 0.5rem;
   width: 37.5rem;
+  padding: 1.5rem;
+  background-color: rgba(243, 212, 240, 0.982);
+}
+
+.city:not(:first-child) {
+  margin-top: 1.5rem;
 }

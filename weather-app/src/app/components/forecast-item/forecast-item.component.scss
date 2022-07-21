@@ -1,31 +1,27 @@
-table {
+:host {
+  text-align: center;
+}
 
-  td,
-  th {
-    max-width: 100%;
-    text-align: left;
+.forecast-time {
+  color: rgba(67, 66, 66, 0.895);
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+.forecast-image {
+  img {
+    width: 50%;
+    display: block;
+    transform: translate(50%);
   }
+}
 
-  th {
-    opacity: 80%;
+.forecast-temperature {
+  font-size: 1.1rem;
+  font-weight: 500;
+  .celsius-symbol {
+    vertical-align: top;
     font-size: 0.9rem;
-    font-weight: 400;
-  }
-
-  td {
-    font-size: 1.1rem;
-    font-weight: 500;
-
-    img {
-      width: 50%;
-      display: block;
-    }
-
-    .celsius-symbol {
-      vertical-align: top;
-      font-size: 0.9rem;
-      font-weight: 100;
-
-    }
+    font-weight: 100;
   }
 }

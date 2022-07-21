@@ -5,7 +5,7 @@ import { Weather } from '../interfaces/weather.interface';
 import { environment } from '../../environments/environment';
 import { WeatherForecast } from '../interfaces/weather-forecast.interface';
 import { OpenWeatherAPI } from './open-weather-api';
-import { WeatherForecastByCityParams } from './../interfaces/weather-forecast-by-city-params.interface';
+import { WeatherForecastByCityParams } from '../interfaces/weather-forecast-by-city-params.interface';
 
 @Injectable({
   providedIn: 'root',

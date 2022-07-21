@@ -4,5 +4,8 @@
   (click)="toggleForecastVisibility()"
 ></app-weather>
 <div class="forecast" *ngIf="isForecastVisible">
-  <app-forecast [forecastList]="(forecast$ | async) ?? []"></app-forecast>
+  <app-forecast
+    *ngIf="forecast$ | async as forecast"
+    [forecast]="forecast"
+  ></app-forecast>
 </div>

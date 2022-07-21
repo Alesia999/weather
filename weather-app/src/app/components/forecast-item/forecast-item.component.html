@@ -1,23 +1,15 @@
-<table>
-  <tr>
-    <th>
-      {{ forecastItem.forecastDate | date: " h a" }}
-    </th>
-  </tr>
-  <tr>
-    <td>
-      <img
-        src="https://openweathermap.org/img/wn/{{
-          forecastItem.forecastImage
-        }}@2x.png"
-        [alt]="forecastItem.forecastDescription"
-      />
-    </td>
-  </tr>
-  <tr>
-    <td>
-      {{ forecastItem.temperature | number: "1.0-0"
-      }}<span class="celsius-symbol">&#8451;</span>
-    </td>
-  </tr>
-</table>
+<div class="forecast-time">
+  {{ forecastItem.forecastDate | date: " h a" }}
+</div>
+<div class="forecast-image">
+  <img
+    src="https://openweathermap.org/img/wn/{{
+      forecastItem.forecastImage
+    }}@2x.png"
+    [alt]="forecastItem.forecastDescription"
+  />
+</div>
+<div class="forecast-temperature">
+  {{ forecastItem.temperature | number: "1.0-0"
+  }}<span class="celsius-symbol">&#8451;</span>
+</div>
