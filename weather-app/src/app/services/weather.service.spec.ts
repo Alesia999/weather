@@ -4,13 +4,14 @@ import {
   HttpClientTestingModule,
   HttpTestingController,
 } from '@angular/common/http/testing';
+import { environment } from '../../environments/environment';
 import { Weather } from './../interfaces/weather.interface';
 import { WeatherForecast } from 'src/app/interfaces/weather-forecast.interface';
 
 const city = 'Torun';
-let forecastItemsCount = 1;
-const apiWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?units=metric&q=${city}&appid=6de247093613209788e48c0171abbc79`;
-const apiForecastUrl = `https://api.openweathermap.org/data/2.5/forecast?units=metric&q=${city}&appid=6de247093613209788e48c0171abbc79&cnt=${forecastItemsCount}`;
+const forecastItemsCount = 1;
+const apiWeatherUrl = `${environment.apiUrl}weather?units=metric&q=${city}&appid=${environment.apiKey}`;
+const apiForecastUrl = `${environment.apiUrl}forecast?units=metric&q=${city}&appid=${environment.apiKey}&cnt=${forecastItemsCount}`;
 
 const mockWeatherResponse = {
   weather: [{ main: 'Clouds', icon: '03n' }],
@@ -84,7 +85,6 @@ describe('WeatherService', () => {
       });
     const request = controller.expectOne(apiForecastUrl);
     request.flush(mockWeatherForecastResponse);
-    controller.verify();
     expect(weatherForecast).toEqual([
       {
         forecastDate: mockWeatherForecastResponse['list'][0].dt_txt,
