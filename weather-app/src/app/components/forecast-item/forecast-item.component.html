@@ -1,12 +1,11 @@
 <div class="forecast-time">
   {{ forecastItem.forecastDate | date: " h a" }}
 </div>
-<img
-  src="https://openweathermap.org/img/wn/{{
-    forecastItem.forecastImage
-  }}@2x.png"
+<app-weather-image
+  [imageName]="forecastItem.forecastImage"
   [alt]="forecastItem.forecastDescription"
-/>
+  [width]="'50%'"
+></app-weather-image>
 <div class="forecast-temperature">
   {{ forecastItem.temperature | number: "1.0-0"
   }}<span class="celsius-symbol">&#8451;</span>

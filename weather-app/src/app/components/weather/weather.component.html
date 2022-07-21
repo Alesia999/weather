@@ -3,10 +3,13 @@
   <h2>{{ weather.temperature | number: "1.0-0" }}&#176;</h2>
 </div>
 <div class="weather-card__description">
-  <img
-    src="https://openweathermap.org/img/wn/{{ weather.weatherImage }}@2x.png"
+  <app-weather-image
+    [imageName]="weather.weatherImage"
     [alt]="weather.weatherDescription"
-  />
-  <h4>{{ weather.weatherDescription }}</h4>
-  <h4>Wind: {{ weather.windSpeed }} m/s</h4>
+    [width]="'50%'"
+  ></app-weather-image>
+  <div class="text-content">
+    <h4>{{ weather.weatherDescription }}</h4>
+    <h4>Wind: {{ weather.windSpeed }} m/s</h4>
+  </div>
 </div>

@@ -6,7 +6,9 @@
 }
 
 .weather-card {
+
   &__main {
+
     h2 {
       margin: 0.2rem 0 0;
       font-size: 4rem;
@@ -22,21 +24,18 @@
   }
 
   &__description {
-    display: flex;
-    flex-direction: column;
-    float: right;
-    text-align: right;
 
-    img {
-      transform: translate(5.5rem, 0.5rem);
-      width: 40%;
-    }
+    text-align: right;
 
     h4 {
       margin: 0;
       font-weight: 400;
-      font-size: 1.1rem;
+      font-size: 1rem;
       line-height: 1.4rem;
+    }
+
+    .text-content {
+      margin-top: -0.7rem;
     }
   }
 }
