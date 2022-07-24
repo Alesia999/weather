@@ -1,16 +1,17 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { WeatherService } from 'src/app/services/weather.service';
 import { Weather } from '../../interfaces/weather.interface';
 import { WeatherForecast } from 'src/app/interfaces/weather-forecast.interface';
-import { Observable, shareReplay } from 'rxjs';
+import { Observable, shareReplay, Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-city',
   templateUrl: './city.component.html',
   styleUrls: ['./city.component.scss'],
 })
-export class CityComponent implements OnInit {
+export class CityComponent implements OnInit, OnDestroy {
   private static readonly FORECAST_ITEMS_COUNT = 8;
+  private readonly destroy$: Subject<boolean> = new Subject<boolean>();
   @Input() city!: string;
   weather!: Weather;
   forecast$!: Observable<WeatherForecast>;
@@ -25,7 +26,11 @@ export class CityComponent implements OnInit {
         city: this.city,
         forecastItemsCount: CityComponent.FORECAST_ITEMS_COUNT,
       })
-      .pipe(shareReplay(1));
+      .pipe(shareReplay(1), takeUntil(this.destroy$));
+  }
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
   }
 
   getCurrentWeatherByCity(city: string) {
