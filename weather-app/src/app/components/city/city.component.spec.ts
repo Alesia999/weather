@@ -26,11 +26,6 @@ const forecast: WeatherForecast = [
   },
 ];
 
-let weatherServiceStub: Partial<WeatherService> = {
-  getCurrentWeatherByCity: () => of(weather),
-  getWeatherForecastByCity: () => of(forecast),
-};
-
 describe('CityComponent', () => {
   let component: CityComponent;
   let fixture: ComponentFixture<CityComponent>;
@@ -43,7 +38,10 @@ describe('CityComponent', () => {
       providers: [
         {
           provide: WeatherService,
-          useValue: weatherServiceStub,
+          useValue: {
+            getCurrentWeatherByCity: () => of(weather),
+            getWeatherForecastByCity: () => of(forecast),
+          },
         },
       ],
     }).compileComponents();
@@ -52,7 +50,6 @@ describe('CityComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CityComponent);
     component = fixture.componentInstance;
-
     fixture.detectChanges();
   });
 
@@ -77,7 +74,10 @@ describe('CityComponent', () => {
     const weather = fixture.debugElement.query(By.css('app-weather'));
     weather.triggerEventHandler('click', null);
     fixture.detectChanges();
+    const spyOnForecast = spyOn(component, 'getWeatherForecastByCity');
+    component.ngOnInit();
     expect(component.isForecastVisible).toBeTruthy();
+    expect(spyOnForecast).toHaveBeenCalled();
     weather.triggerEventHandler('click', null);
     fixture.detectChanges();
     expect(component.isForecastVisible).toBeFalsy();

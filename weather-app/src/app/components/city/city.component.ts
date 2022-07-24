@@ -21,13 +21,9 @@ export class CityComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getCurrentWeatherByCity(this.city);
-    this.forecast$ = this.weatherService
-      .getWeatherForecastByCity({
-        city: this.city,
-        forecastItemsCount: CityComponent.FORECAST_ITEMS_COUNT,
-      })
-      .pipe(shareReplay(1), takeUntil(this.destroy$));
+    this.getWeatherForecastByCity();
   }
+
   ngOnDestroy() {
     this.destroy$.next(true);
     this.destroy$.unsubscribe();
@@ -37,6 +33,15 @@ export class CityComponent implements OnInit, OnDestroy {
     this.weatherService
       .getCurrentWeatherByCity(city)
       .subscribe((weather) => (this.weather = weather));
+  }
+
+  getWeatherForecastByCity() {
+    this.forecast$ = this.weatherService
+      .getWeatherForecastByCity({
+        city: this.city,
+        forecastItemsCount: CityComponent.FORECAST_ITEMS_COUNT,
+      })
+      .pipe(shareReplay(1), takeUntil(this.destroy$));
   }
 
   toggleForecastVisibility() {
