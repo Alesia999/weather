@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ForecastItemComponent } from './forecast-item.component';
-import { ForecastItem } from 'src/app/interfaces/forecast-item.interface';
+import { ForecastItem } from 'src/app/models/forecast-item.interface';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { By } from '@angular/platform-browser';
 

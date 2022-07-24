@@ -1,7 +1,7 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { Weather } from 'src/app/interfaces/weather.interface';
+import { Weather } from 'src/app/models/weather.interface';
 import { WeatherComponent } from './weather.component';
 
 let mockWeather: Weather = {

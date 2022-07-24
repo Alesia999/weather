@@ -1,13 +1,20 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnDestroy,
+  OnInit,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { WeatherService } from 'src/app/services/weather.service';
-import { Weather } from '../../interfaces/weather.interface';
-import { WeatherForecast } from 'src/app/interfaces/weather-forecast.interface';
+import { Weather } from '../../models/weather.interface';
+import { WeatherForecast } from 'src/app/models/weather-forecast.type';
 import { Observable, shareReplay, Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-city',
   templateUrl: './city.component.html',
   styleUrls: ['./city.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CityComponent implements OnInit, OnDestroy {
   private static readonly FORECAST_ITEMS_COUNT = 8;

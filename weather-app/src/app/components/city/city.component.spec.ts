@@ -4,8 +4,8 @@ import { WeatherService } from 'src/app/services/weather.service';
 import { CityComponent } from './city.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { of } from 'rxjs';
-import { Weather } from './../../interfaces/weather.interface';
-import { WeatherForecast } from 'src/app/interfaces/weather-forecast.interface';
+import { Weather } from '../../models/weather.interface';
+import { WeatherForecast } from 'src/app/models/weather-forecast.type';
 import { By } from '@angular/platform-browser';
 
 const weather: Weather = {

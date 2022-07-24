@@ -5,8 +5,8 @@ import {
   HttpTestingController,
 } from '@angular/common/http/testing';
 import { environment } from '../../environments/environment';
-import { Weather } from './../interfaces/weather.interface';
-import { WeatherForecast } from 'src/app/interfaces/weather-forecast.interface';
+import { Weather } from '../models/weather.interface';
+import { WeatherForecast } from 'src/app/models/weather-forecast.type';
 
 const city = 'Torun';
 const forecastItemsCount = 1;

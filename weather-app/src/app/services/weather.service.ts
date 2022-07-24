@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
-import { Weather } from '../interfaces/weather.interface';
+import { Weather } from '../models/weather.interface';
 import { environment } from '../../environments/environment';
-import { WeatherForecast } from '../interfaces/weather-forecast.interface';
+import { WeatherForecast } from '../models/weather-forecast.type';
 import { OpenWeatherAPI } from './open-weather-api';
-import { WeatherForecastByCityParams } from '../interfaces/weather-forecast-by-city-params.interface';
+import { WeatherForecastByCityParams } from '../models/weather-forecast-by-city-params.interface';
 
 @Injectable({
   providedIn: 'root',
