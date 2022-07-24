@@ -64,19 +64,22 @@ describe('CityComponent', () => {
     const spyOnGetWeather = spyOn(component, 'getCurrentWeatherByCity');
     component.ngOnInit();
     expect(spyOnGetWeather).toHaveBeenCalled();
+    expect(component.weather).toEqual(weather);
   });
 
-  it('should get weather forecast after clicked on city', () => {
+  it('should get weather forecast', () => {
     component.ngOnInit();
     expect(component.forecast$).toBeTruthy();
+    component.forecast$.subscribe((f) => expect(f).toEqual(forecast));
   });
 
   it('should toggle forecast visibility', () => {
-    const forecastComponent = fixture.debugElement.query(By.css('.forecast'));
-    component.toggleForecastVisibility();
-    expect(component.isForecastVisible).toBeTruthy();
+    const weather = fixture.debugElement.query(By.css('app-weather'));
+    weather.triggerEventHandler('click', null);
     fixture.detectChanges();
-    component.toggleForecastVisibility();
+    expect(component.isForecastVisible).toBeTruthy();
+    weather.triggerEventHandler('click', null);
+    fixture.detectChanges();
     expect(component.isForecastVisible).toBeFalsy();
   });
 });
