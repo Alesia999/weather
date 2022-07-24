@@ -1,3 +1,7 @@
 <div class="main-content">
-  <app-city *ngFor="let city of cities" [city]="city" class="city"></app-city>
+  <app-city
+    *ngFor="let city of cities | async"
+    [city]="city"
+    class="city"
+  ></app-city>
 </div>
