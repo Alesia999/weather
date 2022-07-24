@@ -4,7 +4,6 @@
 <app-weather-image
   [imageName]="forecastItem.forecastImage"
   [alt]="forecastItem.forecastDescription"
-  [width]="'50%'"
 ></app-weather-image>
 <div class="forecast-temperature">
   {{ forecastItem.temperature | number: "1.0-0"

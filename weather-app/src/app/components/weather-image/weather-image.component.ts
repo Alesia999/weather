@@ -8,5 +8,4 @@ import { Component, Input } from '@angular/core';
 export class WeatherImageComponent {
   @Input() imageName!: string;
   @Input() alt!: string;
-  @Input() width!: string;
 }
