@@ -57,16 +57,17 @@ describe('CityComponent', () => {
     expect(component).toBeDefined();
   });
 
-  it('should get current weather when onInit', () => {
-    const spyOnGetWeather = spyOn(component, 'getCurrentWeatherByCity');
+  it('should get current weather', () => {
+    const spyOnWeather = spyOn(component, 'getCurrentWeatherByCity');
     component.ngOnInit();
-    expect(spyOnGetWeather).toHaveBeenCalled();
-    expect(component.weather).toEqual(weather);
+    expect(spyOnWeather).toHaveBeenCalled();
+    component.weather$.subscribe((w) => expect(w).toEqual(weather));
   });
 
   it('should get weather forecast', () => {
+    const spyOnForecast = spyOn(component, 'getWeatherForecastByCity');
     component.ngOnInit();
-    expect(component.forecast$).toBeTruthy();
+    expect(spyOnForecast).toHaveBeenCalled();
     component.forecast$.subscribe((f) => expect(f).toEqual(forecast));
   });
 

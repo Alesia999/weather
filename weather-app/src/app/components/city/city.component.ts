@@ -20,7 +20,7 @@ export class CityComponent implements OnInit, OnDestroy {
   private static readonly FORECAST_ITEMS_COUNT = 8;
   private readonly destroy$: Subject<boolean> = new Subject<boolean>();
   @Input() city!: string;
-  weather!: Weather;
+  weather$!: Observable<Weather>;
   forecast$!: Observable<WeatherForecast>;
   isForecastVisible: boolean = false;
 
@@ -37,9 +37,7 @@ export class CityComponent implements OnInit, OnDestroy {
   }
 
   getCurrentWeatherByCity(city: string) {
-    this.weatherService
-      .getCurrentWeatherByCity(city)
-      .subscribe((weather) => (this.weather = weather));
+    this.weather$ = this.weatherService.getCurrentWeatherByCity(city);
   }
 
   getWeatherForecastByCity() {

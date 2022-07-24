@@ -1,5 +1,5 @@
 <app-weather
-  *ngIf="weather"
+  *ngIf="weather$ | async as weather"
   [weather]="weather"
   (click)="toggleForecastVisibility()"
 ></app-weather>
