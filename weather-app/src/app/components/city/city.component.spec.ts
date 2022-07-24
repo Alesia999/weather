@@ -7,29 +7,9 @@ import { By } from '@angular/platform-browser';
 import { ReplaySubject, Subject } from 'rxjs';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
-const mockWeather = {
-  weatherDescription: 'clouds',
-  weatherImage: '2d',
-  temperature: 25,
-  windSpeed: 3,
-  cityName: 'Torun',
-  countryCode: 'PL',
-};
-
-const mockForecast$: Subject<WeatherForecast> = new ReplaySubject(1);
-mockForecast$.next([
-  {
-    forecastDate: '2022-07-21 9:00:00',
-    temperature: 25,
-    forecastDescription: 'cloudy',
-    forecastImage: '10n',
-  },
-]);
-
 describe('CityComponent', () => {
   let component: CityComponent;
   let fixture: ComponentFixture<CityComponent>;
-  let service: WeatherService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -43,9 +23,6 @@ describe('CityComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CityComponent);
     component = fixture.componentInstance;
-    service = TestBed.inject(WeatherService);
-    component.weather = mockWeather;
-    component.forecast$ = mockForecast$;
     fixture.detectChanges();
   });
 
@@ -53,19 +30,23 @@ describe('CityComponent', () => {
     expect(component).toBeDefined();
   });
 
-  it('should render weather', () => {
-    const { debugElement } = fixture;
-    const weather = debugElement.query(By.css('app-weather'));
-    expect(weather).toBeDefined();
+  it('should get current weather when onInit', () => {
+    const spyOnGetWeather = spyOn(component, 'getCurrentWeatherByCity');
+    component.ngOnInit();
+    expect(spyOnGetWeather).toHaveBeenCalled();
   });
 
-  it('should render forecast if weather card was clicked', () => {
-    const { debugElement } = fixture;
-    const weather = debugElement.query(By.css('app-weather'));
-    const forecast = debugElement.query(By.css('app-forecast'));
-    weather.triggerEventHandler('click', null);
-    fixture.detectChanges();
-    expect(component.isForecastVisible).toBeTruthy();
-    expect(forecast).toBeDefined();
+  it('should get weather forecast when onInit', () => {
+    component.ngOnInit();
+    expect(component.forecast$).toBeTruthy();
   });
+
+  it('should toggle forecast visibility', () => {
+    component.toggleForecastVisibility();
+    expect(component.isForecastVisible).toBeTruthy();
+    component.toggleForecastVisibility();
+    expect(component.isForecastVisible).toBeFalsy();
+  })
+
+
 });

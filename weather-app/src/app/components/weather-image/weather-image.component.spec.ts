@@ -6,7 +6,6 @@ import { WeatherImageComponent } from './weather-image.component';
 const imageConfig = {
   imageName: '04d',
   alt: 'clouds',
-  width: '5rem',
 };
 
 describe('WeatherImageComponent', () => {
@@ -24,7 +23,6 @@ describe('WeatherImageComponent', () => {
     fixture = TestBed.createComponent(WeatherImageComponent);
     component = fixture.componentInstance;
     component.imageName = imageConfig.imageName;
-    component.width = imageConfig.width;
     component.alt = imageConfig.alt;
     fixture.detectChanges();
   });
@@ -38,6 +36,5 @@ describe('WeatherImageComponent', () => {
     const image = debugElement.query(By.css('img'));
     expect(image.properties['src']).toContain('04d');
     expect(image.properties['alt']).toContain('clouds');
-    expect(image.properties['width']).toContain('5rem');
   });
 });
