@@ -6,7 +6,6 @@ import { WeatherComponent } from './components/weather/weather.component';
 import { ForecastComponent } from './components/forecast/forecast.component';
 import { ForecastItemComponent } from './components/forecast-item/forecast-item.component';
 import { CityComponent } from './components/city/city.component';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { WeatherImageComponent } from './components/weather-image/weather-image.component';
 
 @NgModule({
@@ -18,7 +17,7 @@ import { WeatherImageComponent } from './components/weather-image/weather-image.
     CityComponent,
     WeatherImageComponent,
   ],
-  imports: [BrowserModule, HttpClientModule, NoopAnimationsModule],
+  imports: [BrowserModule, HttpClientModule],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
