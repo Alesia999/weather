@@ -1,6 +1,10 @@
 <div class="weather-card__main">
-  <h3>{{ weather.cityName }}, {{ weather.countryCode }}</h3>
-  <h2>{{ weather.temperature | number: "1.0-0" }}&#176;</h2>
+  <h3 data-test-id="city-name">
+    {{ weather.cityName }}, {{ weather.countryCode }}
+  </h3>
+  <h2 data-test-id="temperature">
+    {{ weather.temperature | number: "1.0-0" }}&#176;
+  </h2>
 </div>
 <div class="weather-card__description">
   <app-weather-image
@@ -8,7 +12,7 @@
     [alt]="weather.weatherDescription"
   ></app-weather-image>
   <div class="text-content">
-    <h4>{{ weather.weatherDescription }}</h4>
-    <h4>Wind: {{ weather.windSpeed }} m/s</h4>
+    <h4 data-test-id="weather-description">{{ weather.weatherDescription }}</h4>
+    <h4 data-test-id="wind-speed">Wind: {{ weather.windSpeed }} m/s</h4>
   </div>
 </div>

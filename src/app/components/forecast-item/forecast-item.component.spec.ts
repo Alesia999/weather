@@ -3,8 +3,9 @@ import { ForecastItemComponent } from './forecast-item.component';
 import { ForecastItem } from 'src/app/models/forecast-item.interface';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { By } from '@angular/platform-browser';
+import { DatePipe } from '@angular/common';
 
-let mockForecastItem: ForecastItem = {
+const mockForecastItem: ForecastItem = {
   forecastDate: '2022-07-21 9:00:00',
   temperature: 25,
   forecastDescription: 'cloudy',
@@ -30,35 +31,36 @@ describe('ForecastItemComponent', () => {
   });
 
   it('should create', () => {
-    expect(component).toBeDefined();
+    expect(component).toBeTruthy();
   });
 
   it('should display forecast time and temperature', () => {
+    let pipe = new DatePipe('en');
     expect(
       fixture.debugElement.query(By.css('.forecast-time')).nativeElement
         .textContent
-    ).toContain('9');
+    ).toContain(pipe.transform(mockForecastItem.forecastDate, 'h a'));
     expect(
       fixture.debugElement.query(By.css('.forecast-temperature')).nativeElement
         .textContent
-    ).toContain(25);
+    ).toContain(mockForecastItem.temperature);
   });
 
   it('should render weather image', () => {
     const { debugElement } = fixture;
     const image = debugElement.query(By.css('app-weather-image'));
-    expect(image).toBeDefined();
+    expect(image).toBeTruthy();
   });
 
   it('should pass image name', () => {
     const { debugElement } = fixture;
     const image = debugElement.query(By.css('app-weather-image'));
-    expect(image.properties['imageName']).toBe('10n');
+    expect(image.properties['imageName']).toBe(mockForecastItem.forecastImage);
   });
 
   it('should pass image description', () => {
     const { debugElement } = fixture;
     const image = debugElement.query(By.css('app-weather-image'));
-    expect(image.properties['alt']).toBe('cloudy');
+    expect(image.properties['alt']).toBe(mockForecastItem.forecastDescription);
   });
 });

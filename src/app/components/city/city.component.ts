@@ -18,7 +18,7 @@ import { Observable, shareReplay, Subject, takeUntil } from 'rxjs';
 })
 export class CityComponent implements OnInit, OnDestroy {
   private static readonly FORECAST_ITEMS_COUNT = 8;
-  private readonly destroy$: Subject<boolean> = new Subject<boolean>();
+  private readonly destroy$: Subject<void> = new Subject<void>();
   @Input() city!: string;
   weather$!: Observable<Weather>;
   forecast$!: Observable<WeatherForecast>;
@@ -27,26 +27,18 @@ export class CityComponent implements OnInit, OnDestroy {
   constructor(private readonly weatherService: WeatherService) {}
 
   ngOnInit(): void {
-    this.getCurrentWeatherByCity(this.city);
-    this.getWeatherForecastByCity();
-  }
-
-  ngOnDestroy() {
-    this.destroy$.next(true);
-    this.destroy$.unsubscribe();
-  }
-
-  getCurrentWeatherByCity(city: string) {
-    this.weather$ = this.weatherService.getCurrentWeatherByCity(city);
-  }
-
-  getWeatherForecastByCity() {
+    this.weather$ = this.weatherService.getCurrentWeatherByCity(this.city);
     this.forecast$ = this.weatherService
       .getWeatherForecastByCity({
         city: this.city,
         forecastItemsCount: CityComponent.FORECAST_ITEMS_COUNT,
       })
       .pipe(shareReplay(1), takeUntil(this.destroy$));
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   toggleForecastVisibility() {

@@ -7,6 +7,6 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class WeatherImageComponent {
-  @Input() imageName!: string;
-  @Input() alt!: string;
+  @Input() imageName: string = '';
+  @Input() alt: string = '';
 }

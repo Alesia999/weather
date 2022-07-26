@@ -1,4 +1,3 @@
-import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { WeatherService } from 'src/app/services/weather.service';
 import { CityComponent } from './city.component';
@@ -8,7 +7,7 @@ import { Weather } from '../../models/weather.interface';
 import { WeatherForecast } from 'src/app/models/weather-forecast.type';
 import { By } from '@angular/platform-browser';
 
-const weather: Weather = {
+const mockWeather: Weather = {
   weatherDescription: 'clouds',
   weatherImage: '2d',
   temperature: 25,
@@ -17,7 +16,7 @@ const weather: Weather = {
   countryCode: 'PL',
 };
 
-const forecast: WeatherForecast = [
+const mockForecast: WeatherForecast = [
   {
     forecastDate: '2022-07-21 21:00:00',
     temperature: 25,
@@ -26,61 +25,78 @@ const forecast: WeatherForecast = [
   },
 ];
 
+const mockCity = 'Torun';
+
 describe('CityComponent', () => {
   let component: CityComponent;
   let fixture: ComponentFixture<CityComponent>;
+  let fakeWeatherService: WeatherService;
 
   beforeEach(async () => {
+    fakeWeatherService = jasmine.createSpyObj<WeatherService>(
+      'WeatherService',
+      {
+        getCurrentWeatherByCity: of(mockWeather),
+        getWeatherForecastByCity: of(mockForecast),
+      }
+    );
     await TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
       declarations: [CityComponent],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
         {
           provide: WeatherService,
-          useValue: {
-            getCurrentWeatherByCity: () => of(weather),
-            getWeatherForecastByCity: () => of(forecast),
-          },
+          useValue: fakeWeatherService,
         },
       ],
     }).compileComponents();
-  });
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(CityComponent);
     component = fixture.componentInstance;
+    component.city = mockCity;
     fixture.detectChanges();
   });
 
   it('should create', () => {
-    expect(component).toBeDefined();
+    expect(component).toBeTruthy();
   });
 
-  it('should get current weather', () => {
-    const spyOnWeather = spyOn(component, 'getCurrentWeatherByCity');
-    component.ngOnInit();
-    expect(spyOnWeather).toHaveBeenCalled();
-    component.weather$.subscribe((w) => expect(w).toEqual(weather));
+  it('should get current weather when onInit', () => {
+    const weather = fixture.debugElement.query(By.css('app-weather'));
+    expect(weather).toBeTruthy();
+    expect(fakeWeatherService.getCurrentWeatherByCity).toHaveBeenCalledOnceWith(
+      mockCity
+    );
   });
 
-  it('should get weather forecast', () => {
-    const spyOnForecast = spyOn(component, 'getWeatherForecastByCity');
-    component.ngOnInit();
-    expect(spyOnForecast).toHaveBeenCalled();
-    component.forecast$.subscribe((f) => expect(f).toEqual(forecast));
-  });
-
-  it('should toggle forecast visibility', () => {
+  it('should render and hide forecast after clicking', () => {
     const weather = fixture.debugElement.query(By.css('app-weather'));
     weather.triggerEventHandler('click', null);
     fixture.detectChanges();
-    const spyOnForecast = spyOn(component, 'getWeatherForecastByCity');
-    component.ngOnInit();
-    expect(component.isForecastVisible).toBeTruthy();
-    expect(spyOnForecast).toHaveBeenCalled();
+    expect(fixture.debugElement.query(By.css('app-forecast'))).toBeTruthy();
+    expect(
+      fakeWeatherService.getWeatherForecastByCity
+    ).toHaveBeenCalledOnceWith({ city: mockCity, forecastItemsCount: 8 });
     weather.triggerEventHandler('click', null);
     fixture.detectChanges();
-    expect(component.isForecastVisible).toBeFalsy();
+    expect(fixture.debugElement.query(By.css('app-forecast'))).toBeFalsy();
+    weather.triggerEventHandler('click', null);
+    fixture.detectChanges();
+    expect(
+      fakeWeatherService.getWeatherForecastByCity
+    ).not.toHaveBeenCalledTimes(2);
+  });
+
+  it('should pass weather properties during component initialisation', () => {
+    const weather = fixture.debugElement.query(By.css('app-weather'));
+    expect(weather.properties['weather']).toBe(mockWeather);
+  });
+
+  it('should pass forecast properties after rendering forecast component', () => {
+    const weather = fixture.debugElement.query(By.css('app-weather'));
+    weather.triggerEventHandler('click', null);
+    fixture.detectChanges();
+    const forecast = fixture.debugElement.query(By.css('app-forecast'));
+    expect(forecast.properties['forecast']).toBe(mockForecast);
   });
 });

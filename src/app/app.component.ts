@@ -1,5 +1,4 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { of } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -8,5 +7,5 @@ import { of } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
-  cities = of(['Torun', 'Hamburg', 'Stockholm', 'Corfu', 'Lisbon']);
+  readonly cities = ['Torun', 'Hamburg', 'Stockholm', 'Corfu', 'Lisbon'];
 }

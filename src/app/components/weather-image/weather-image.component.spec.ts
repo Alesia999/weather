@@ -34,7 +34,7 @@ describe('WeatherImageComponent', () => {
   it('should contain image properties', () => {
     const { debugElement } = fixture;
     const image = debugElement.query(By.css('img'));
-    expect(image.properties['src']).toContain('04d');
-    expect(image.properties['alt']).toContain('clouds');
+    expect(image.properties['src']).toContain(imageConfig.imageName);
+    expect(image.properties['alt']).toContain(imageConfig.alt);
   });
 });
