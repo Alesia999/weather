@@ -1,8 +1,12 @@
 # WeatherApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.3.
+Weather App is a single page application that presents a list of 5 European cities and shows
+the current weather situation for each of them. Clicking on a city shows the forecast in the next hours.
+City is an application-level component, it has logic of receiving current weather by city and weather forecast by city. Other components are presentational. Weather and Forecast components are responsible for having view of current weather and forecast. It was decided to create a separate component for a weather image, so that it could be used throughout the application.
 
 ## Development server
+
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.3.
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
