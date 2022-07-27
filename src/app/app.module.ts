@@ -7,6 +7,7 @@ import { ForecastComponent } from './components/forecast/forecast.component';
 import { ForecastItemComponent } from './components/forecast-item/forecast-item.component';
 import { CityComponent } from './components/city/city.component';
 import { WeatherImageComponent } from './components/weather-image/weather-image.component';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -17,7 +18,7 @@ import { WeatherImageComponent } from './components/weather-image/weather-image.
     CityComponent,
     WeatherImageComponent,
   ],
-  imports: [BrowserModule, HttpClientModule],
+  imports: [BrowserModule, BrowserAnimationsModule, HttpClientModule],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

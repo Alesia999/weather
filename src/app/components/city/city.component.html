@@ -3,7 +3,8 @@
   [weather]="weather"
   (click)="toggleForecastVisibility()"
 ></app-weather>
-<div class="forecast" *ngIf="isForecastVisible">
+
+<div class="forecast" *ngIf="isForecastVisible" @enterAnimation>
   <app-forecast
     *ngIf="forecast$ | async as forecast"
     [forecast]="forecast"
